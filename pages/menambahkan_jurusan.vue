@@ -25,7 +25,7 @@
   const kirimData = async () => {
       console.log(form.value)
       const { error } = await supabase.from("jurusan").insert([form.value])
-      if(!error) navigateTo("/")
+      if(!error) navigateTo("/menambahkan_sekolah")
       else throw error
   }
   </script>
