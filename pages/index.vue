@@ -26,7 +26,7 @@
         </div>
 
         <div class="mb-3">
-          <select v-model="form.asalSekolah" class="form-control form-control-lg form-select rounded-5 mb-2 abu">
+          <select v-model="form.asalsekolah" class="form-control form-control-lg form-select rounded-5 mb-2 abu">
             <option value="">asal sekolah</option>
            <option v-for="(item, i) in opas" :key="i" :value="item.id">{{ item.asalsekolah }}</option>
           </select>
@@ -61,11 +61,11 @@ const objectives = ref([]);
 const opas= ref([]);
 const rians= ref([]);
 const form = ref({
-    nama: "",
     jurusan: "",
-    asalSekolah: "",
+    asalsekolah: "",
     status: "",
     photo: "",
+    nama: "",
 });
 const handleFileInput = (event) => {
   file.value = event.target.files[0];
@@ -80,13 +80,13 @@ const kirimData = async () => {
     return;
 }
 try {
-    const { data, error } = await supabase.storage.from("photo").upload(`public/${file.value.name}`, file.value);
+    const { data, error } = await supabase.storage.from("foto").upload(`public/${file.value.name}`, file.value);
 
     if (error) {
       throw error;
     }
 
-    const publicUrl = supabase.storage.from("photo").getPublicUrl(`public/${file.value.name}`).data.publicUrl;
+    const publicUrl = supabase.storage.from("foto").getPublicUrl(`public/${file.value.name}`).data.publicUrl;
     const { error: insertError } = await supabase.from("absen").insert([{ foto: publicUrl, ...form.value }]);
 
     if (!error) {
@@ -104,16 +104,16 @@ try {
   }
 
 const getnama = async () => {
-    const { data, error } = await supabase.from("nama").select("nama")
+    const { data, error } = await supabase.from("nama").select("*")
     if(data) members.value = data
 };
 
 const getjurusan = async () => {
-    const { data, error } = await supabase.from("nama").select("jurusan")
+    const { data, error } = await supabase.from("jurusan").select("*")
     if(data) objectives.value = data
 };
 const getasalsekolah= async () => {
-    const { data, error } = await supabase.from("nama").select("asalsekolah")
+    const { data, error } = await supabase.from("asalsekolah").select("*")
     if(data) opas.value = data
 };
 const getstatus= async () => {

@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <h2 class="text-center my-4">MENAMBAHKAN MURID</h2>
             <form  @submit.prevent="kirimData">
-              <input v-model="form.nama" type="text" placeholder="Nama ...." class="input-field" />
+              <input v-model="form.asalsekolah" type="text" placeholder="Asal sekolah..." class="input-field" />
               <button type="submit" class="submit-button">Submit</button>
             </form>
       </div>
@@ -20,12 +20,12 @@
   const supabase = useSupabaseClient()
 
   const form = ref({
-      nama: "",
+      asalsekolah: "",
   });
   const kirimData = async () => {
       console.log(form.value)
-      const { error } = await supabase.from("nama").insert([form.value])
-      if(!error) navigateTo("/jurusan")
+      const { error } = await supabase.from("asalsekolah").insert([form.value])
+      if(!error) navigateTo("/")
       else throw error
   }
   </script>

@@ -1,44 +1,50 @@
 <template>
-    <div class="container">
-      <div class="content">
-        <h2>Anda telah berhasil</h2>
-        <h3>mengisi absen</h3>
+  <div class="wrapper">
+    <div class="content">
+      <div class="container">
+        <div class="content-inner">
+          <h2>Anda telah berhasil</h2>
+          <h3>mengisi absen</h3>
+        </div>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: "AbsensiSuccess",
-  };
-  </script>
-  
-  <style scoped>
-  .container {
-    text-align: center;
-    padding: 20px;
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-  }
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ddd;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  .logo {
-    width: 40px;
-    height: 40px;
-  }
-  .content {
-    margin-top: 20px;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  </style>
-  
+    <FooterComponent />
+  </div>
+</template>
+
+<style scoped>
+html, body, .wrapper {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  text-align: center;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.content-inner {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+</style>

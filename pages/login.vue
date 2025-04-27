@@ -11,22 +11,26 @@
     </div>
   </template>
   
-  <script>
-  export default {
-    name: "AbsensiSuccess",
-    data() {
-      return {
-        email: "",
-        password: ""
-      };
-    },
-    methods: {
-      login() {
-        alert(`Email: ${this.email}, Password: ${this.password}`);
-      }
-    }
-  };
+  <script setup>
+  definePageMeta({
+    layout: 'login',
+  })
+  const client = useSupabaseClient()
+  const email = ref("");
+  const password = ref("");
+  
+  async function handleLogin() {
+    console.log(email.value)
+    console.log(password.value)
+    const { data, error } = await client.auth.signInWithPassword({
+      email: email.value,
+      password: password.value
+    })
+    if (data) navigateTo('/dasboard')
+  }
   </script>
+  
+  
   
   <style scoped>
   .container {
